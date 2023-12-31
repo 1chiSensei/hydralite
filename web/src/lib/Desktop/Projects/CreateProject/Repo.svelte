@@ -4,7 +4,7 @@
 	import { Github } from '$lib/git/Github';
 	import OrgDropdown from './c/OrgDropdown.svelte';
 	import RepoSearch from './c/RepoSearch.svelte';
-import Tabs from './Tabs.svelte';
+	import Tabs from './Tabs.svelte';
 
 	interface Repository {
 		full_name: string;
@@ -96,7 +96,7 @@ import Tabs from './Tabs.svelte';
 		</h1>
 		<h6 class="font-normal mt-2 text-black dark:text-white">
 			Don’t have a repository? We’ll create one for you, so you can <span
-				class="text-iris-400 cursor-pointer"
+				class="text-iris-300 cursor-pointer font-extrabold"
 				on:click={() => {
 					tab.set('details');
 				}}>skip this step.</span

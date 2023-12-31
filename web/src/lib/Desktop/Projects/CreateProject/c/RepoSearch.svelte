@@ -13,14 +13,20 @@
 
 	const SearchItems = async (term: string) => {
 		let repos = getRepo();
-
+		let res: number = 0;
+		allRepos = [];
 		for (let index = 0; index < repos.length; index++) {
 			const element = repos[index];
-			if (element.org === currentOrg()) {
-				if (element.name.indexOf(term) !== -1) {
-					allRepos = [];
-					allRepos.push(element);
-					show = true;
+			if (res > 3) {
+				break;
+			} else {
+				if (element.org === currentOrg()) {
+					if (element.name.startsWith(term)) {
+						allRepos.push(element);
+						show = true;
+						res += 1;
+						console.log(element.name);
+					}
 				}
 			}
 		}
@@ -66,8 +72,8 @@
 			<div
 				in:scale={{ duration: 100, start: 0.95 }}
 				out:scale={{ duration: 75, start: 0.95 }}
-				class="origin-top-right absolute right-0 w-full mt-1 bg-[#2A303F]
-            rounded shadow-md"
+				class="origin-top-right h-auto absolute right-0 w-full mt-1 bg-[#2A303F]
+            rounded-xl shadow-md"
 			>
 				{#each allRepos as repos}
 					<button
@@ -75,7 +81,7 @@
 							setCurrentRepo(repos.name);
 							show = false;
 						}}
-						class="flex items-center  py-4 w-full px-5 hover:bg-green-500 hover:text-green-100 text-black dark:text-white"
+						class="flex items-center  py-4 w-full px-5 hover:bg-iris-400 hover:text-green-100 text-black dark:text-white"
 					>
 						<h5 class="px-5">{repos.name}</h5>
 					</button>
